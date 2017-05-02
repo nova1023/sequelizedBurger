@@ -1,30 +1,17 @@
-
-
-var burgers = 
-{
-	all: function(cb) 
-	{
-		// orm.selectAll("*", "burgers", function(res)
-		// {
-		// 	cb(res);
-		// });
-	},
-
-	insert: function(col, val, cb) 
-	{
-		// orm.insertOne("burgers", col, val, function(res) 
-		// {
-		// 	cb(res);
-		// });
-	},
-
-	update: function(val, condition, cb) 
-	{
-		// orm.updateOne("burgers", val, condition, function(res) 
-		// {
-		// 	cb(res);
-		// });
-	}
+module.exports = function(sequelize, Datatypes) {
+	var Burger = sequelize.define("Burger", {
+		burger_name: {
+			type: Datatypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1, 160]
+			}
+		},
+		devoured: {
+			type: Datatypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: false
+		}
+	});
+	return Burger;
 };
-
-module.exports = burgers;
